@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# stops processing in case of failure
+set -euo pipefail
+
+# prints each line executed
+set -x
+
+echo "Your solution goes here"
