@@ -6,4 +6,6 @@ set -euo pipefail
 # prints each line executed
 set -x
 
+pwd
+
 echo "Your solution goes here"
