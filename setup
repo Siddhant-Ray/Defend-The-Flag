@@ -34,3 +34,10 @@ echo "y" | sudo ufw enable
 sudo ufw allow ssh
 sudo ufw allow proto tcp from 129.132.121.162 to any port 5432
 
+# There is an Off-by-slash misconfiguration in the nginx server. After checking the log 
+# files in /var/log/nginx/access.log, this was confirmed. To fix this, the location /app
+# in /etc/nginx/sites-enabled/company-app needs to be changed to /app/
+
+echo "Fixing the pwned issue"
+
+sudo sed -i 's+location /app+location /app/+' /etc/nginx/sites-enabled/company-app.conf
