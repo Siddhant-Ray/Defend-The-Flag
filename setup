@@ -17,3 +17,20 @@ echo "Testing push access"
 
 echo "Fixing internet connectivity problem"
 sudo systemctl stop nftables.service
+
+# REF : http://manpages.ubuntu.com/manpages/xenial/en/man8/ufw.8.html
+# We need a firewall to only allow grader.dtf.netsec.inf.ethz.ch to access
+# the database server. For this, I thought of installing a convenient package 
+# called ufw, which is easier and cleaner to use than iptables.
+
+sudo apt-get install ufw -y
+
+# To add a rule, we need the IP address of the server. For this I used, 
+# sudo dig grader.dtf.netsec.inf.ethz.ch which returned 129.132.121.162
+
+echo "Fixing database server access problem"
+
+yes | sudo ufw enable
+sudo ufw allow ssh
+sudo ufw allow proto tcp from 129.132.121.162 to any port 5432
+
