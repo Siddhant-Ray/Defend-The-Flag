@@ -9,3 +9,4 @@ set -x
 pwd
 
 echo "Your solution goes here"
+echo "Testing push access"
