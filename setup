@@ -10,3 +10,10 @@ pwd
 
 echo "Your solution goes here"
 echo "Testing push access"
+
+# Internet connectvity issue was due to a firewall. First checked iptables
+# but there didn't seem any rules for filtering there. Then by checking sytemctl
+# services, saw that nftables.service was active and stopped the process.
+
+echo "Fixing internet connectivity problem"
+sudo systemctl stop nftables.service
