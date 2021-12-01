@@ -57,6 +57,6 @@ sudo snap install core; sudo snap refresh core
 sudo snap install --classic certbot
 sudo ln -sf /snap/bin/certbot /usr/bin/certbot
 
-sudo certbot --server http://acme.dtf.netsec.inf.ethz.ch/acme/default/directory -d sidray.student.dtf.netsec.inf.ethz.ch --register-unsafely-without-email
+echo "Y" | sudo certbot --server http://acme.dtf.netsec.inf.ethz.ch/acme/default/directory -d sidray.student.dtf.netsec.inf.ethz.ch --register-unsafely-without-email
 
 
