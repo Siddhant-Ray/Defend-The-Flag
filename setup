@@ -59,4 +59,12 @@ sudo ln -sf /snap/bin/certbot /usr/bin/certbot
 
 echo "Y" | sudo certbot --server http://acme.dtf.netsec.inf.ethz.ch/acme/default/directory -d sidray.student.dtf.netsec.inf.ethz.ch --register-unsafely-without-email
 
+# After inspecting the TLS configuration in /etc/nginx/nginx.conf, understood that we should only 
+# allow TLSv1.3 and turn off prefer_server_ciphers.
+
+echo "Fixing the TLS configutation"
+
+sudo sed -i 's+ssl_protocols TLSv1 TLSv1.1 TLSv1.2;+ssl_protocols TLSv1.3;+' /etc/nginx/nginx.conf
+sudo sed -i 's+ssl_prefer_server_ciphers on;+ssl_prefer_server_ciphers off;+' /etc/nginx/nginx.conf
+sudo systemctl restart nginx
 
