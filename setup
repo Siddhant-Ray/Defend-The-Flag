@@ -39,5 +39,9 @@ sudo ufw allow proto tcp from 129.132.121.162 to any port 5432
 # in /etc/nginx/sites-enabled/company-app needs to be changed to /app/
 
 echo "Fixing the pwned issue"
+# Must add rules for port 80 and port 443 also to the firewall
+# for the rest of the tasks
+sudo ufw allow to any port 80
+sudo ufw allow to any port 443
 
-sudo sed -i 's+location /app+location /app/+' /etc/nginx/sites-enabled/company-app.conf
+sudo sed -i 's+location /app {+location /app/ {+' /etc/nginx/sites-enabled/company-app.conf
