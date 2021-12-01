@@ -46,3 +46,17 @@ sudo ufw allow to any port 443
 
 sudo sed -i 's+location /app {+location /app/ {+' /etc/nginx/sites-enabled/company-app.conf
 sudo systemctl restart nginx
+
+# For obtaining the ACME certificate, using the ACME client certbot. 
+# Recommended to install via snap on the certbot website.
+
+echo "Obtaining the TLS Certificate for the nginx server"
+
+sudo apt-get install snapd -y
+sudo snap install core; sudo snap refresh core
+sudo snap install --classic certbot
+sudo ln -sf /snap/bin/certbot /usr/bin/certbot
+
+sudo certbot --server http://acme.dtf.netsec.inf.ethz.ch/acme/default/directory -d sidray.student.dtf.netsec.inf.ethz.ch --register-unsafely-without-email
+
+
